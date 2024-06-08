@@ -1,0 +1,95 @@
+/*-- cart items --*/
+
+.cart-page {
+    margin: 20px;
+    overflow-x: auto; /* Enable horizontal scrolling for small screens */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.cart-info {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 20px; /* Add margin to increase spacing between products */
+}
+
+th {
+    text-align: left;
+    padding: 5px;
+    color: #fff;
+    background-color: #ff523b;
+    font-weight: normal;
+}
+
+td {
+    padding: 10px 5px;
+}
+
+td input {
+    width: 40px;
+    height: 30px;
+    padding: 5px;
+}
+
+td a {
+    color: #ff523b;
+    font-size: 12px;
+}
+
+td img {
+    max-width: 100%;
+    height: auto;
+    margin-right: 10px;
+}
+
+td .item-description {
+    max-width: calc(100% - 90px); /* Adjust this value according to your image width and margin */
+}
+
+.total-price {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.total-price table {
+    border-top: 3px solid #ff523b;
+    width: 100%;
+    max-width: 400px;
+}
+
+td:last-child {
+    text-align: right;
+}
+
+/* Media query for less than 600px screen size */
+@media screen and (max-width: 600px) {
+    .cart-info {
+        flex-direction: column; /* Display items vertically on small screens */
+    }
+}
+/* product.css */
+.products-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.product {
+  margin-bottom: 20px; /* Adjust the spacing between products vertically */
+}
+
+.product table {
+  border-collapse: collapse;
+}
+
+.product td {
+  padding: 10px; /* Adjust the padding inside each td */
+}
+
+.product img {
+  display: block;
+  margin: 0 auto; /* Center the images horizontally */
+}

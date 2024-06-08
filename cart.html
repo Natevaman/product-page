@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="cart.css">
+    <style>
+        body {
+            margin: 30px; /* Larger margin around the whole page */
+        }
+    </style>
+</head>
+<body>
+    <!--cart items details-->
+    <div class="small-container cart-page">
+        <table>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Subtotal</th>
+            </tr>
+            <tr class="cart-item" data-price="25.00">
+                <td>
+                    <div class="cart-info">
+                        <img src="https://lh3.googleusercontent.com/pw/AP1GczMlp3hoscjHlXsDJ7tZjL2LeVT9tPVOaaaxMLwWfKS4gbdo2xZknS2wPkRT1kHOi7I4xg2Ze6wYPTssSUkCG0fRhHq8MbO2dHLo_1nal2ug9QTcLjo93qJ5mklL3KxONYACUj1I5KlKFtEp6WA9T1JjqP3yPrdRexp-ckJCxZVzh7SRXIlodnqJfcAPzbMs0oujjIiag6h2ermZa7aI8vrV8cl9tOatx7mDRaAVARxOgm4TOyTqB5mCvrPTtZ2kCyeiWwhuach7RZz9PVjkRtZlouICzmDpDS6-uRAwP6Y2jdGZ9s30s9E8BL5_urTNOUEzcs86OwCMcbhD8ukE5KltXBUvwZsGbzHoy061qI4KmbUWaCYeJWhBT8WLVf_RWNnmKMeOQYAWtjRHqpSfP5DAbGKndPr3lyzXMiholGL9r_bb97srhcoJ-eVT8k8YPx-Yh1OWDk_YbRamP-23gW0oChtUk2HKDFj50zIVq626AN4Z1Awjl4vN83wIElIxJ5m6LIhzwX89wRwETt97G7GusXwO9386VNI_BvXm7L07tpfoDaUmXGznxnwgMUGqq6OxJvEuoKGdz9O8y5s0y9OvKWFGd9LGTahhS_BJodb4ustb7d2pND9axxGhMWKjLJbn_b_chs0SH2vNlHTb57FHBaCvzbROqRfr3Dj4lnAjxpBR6NkNX7vqo7YalncydbGCaTFJookMmwPsKu-9jauen652x-_CRKtlzOjmAw_13L5TRT-ADW-dbltn0Wzx8jvmILh3WsMpTcAe-Kisfna3IDgk16KpZ3NcoIKbLU_jLB3yu19qdHGwz1z0o016Fy02Tnd6K9exK-K9OOHJSw0y9PJzLgFHQpsTxVDGHUgNVL3rmiBpXWNjTaKXizDj2T6qKBhziEjcTY_njy-ABFqUpQ=w1902-h1426-s-no-gm?authuser=0" alt="image" height="200" width="200">
+                        <div class="item-description">
+                            <p>Dangly Thing</p>
+                            <small>Price: £25.00</small>
+                            <br><br>
+                            <a href="#" class="remove-item">Remove</a>
+                        </div>    
+                    </div>            
+                </td>
+                <td><input type="number" value="1" class="quantity-input" onchange="updateSubtotal(this)"></td>
+                <td class="subtotal">£25.00</td>
+            </tr>
+        </table>
+
+        <div class="total-price">
+            <table>
+                <tr>
+                    <td>Total</td>
+                    <td id="total">£25.00</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <script src="cart.js"></script>
+    <script>
+        function updateSubtotal(input) {
+            var quantity = input.value;
+            var pricePerItem = parseFloat(input.parentNode.parentNode.getAttribute('data-price'));
+            var subtotal = quantity * pricePerItem;
+            input.parentNode.parentNode.querySelector('.subtotal').innerText = '£' + subtotal.toFixed(2);
+            updateTotal();
+        }
+
+        function updateTotal() {
+            var subtotalElements = document.querySelectorAll('.subtotal');
+            var total = 0;
+            subtotalElements.forEach(function(element) {
+                total += parseFloat(element.innerText.replace('£', ''));
+            });
+            document.getElementById('total').innerText = '£' + total.toFixed(2);
+        }
+
+        var removeButtons = document.querySelectorAll('.remove-item');
+        removeButtons.forEach(function(button) {
+            button.addEventListener('click', function(event) {
+                event.preventDefault();
+                var cartItem = button.closest('.cart-item');
+                cartItem.parentNode.removeChild(cartItem);
+                updateTotal();
+            });
+        });
+    </script>
+</body>
+</html>
